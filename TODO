@@ -1,0 +1,12 @@
+TODO
+====
+
+* Convert to gem
+* Rewrite tests that were removed when changing to raw XML generation. 
+  savon-spec doesn't support mocks for raw XML requests.
+* Write patch for savon-spec library to handle mocks for objects that build
+  their own XML, or get rid of savon altogether.
+* Finish/improve documentation
+* Add more examples
+* Improve test coverage
+* Improve traversal efficiency

@@ -1,0 +1,20 @@
+= Spherical
+
+Spherical provides access to VMware vSphere servers and their resources via a self-contained Ruby gem. It provides the following features/benefits:
+
+* Small number of dependencies; only relies on savon and xmlsimple
+* Utilizes meta-programming wherever possible to introspect server-side operations and data structures, enabling simple adaptation to changes in the vSphere API.
+* Abstracts away complex traversals of vSphere tree structures, as well as access to properties, etc.
+* Covers almost the entire vSphere API -- if you can do it directly with the vSphere SOAP API, you can do it with Spherical.
+
+== Requirements
+
+When installing Spherical, the following gems will be installed automatically if they are not already:
+
+* savon -- a library providing simplified access to WSDL endpoints
+* xmlsimple -- a robust XML parsing library that converts even complex XML to simple native data structures.
+* rspec -- spec testing support
+
+== Installing
+
+TBD.
