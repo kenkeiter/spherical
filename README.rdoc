@@ -15,6 +15,6 @@ When installing Spherical, the following gems will be installed automatically if
 * xmlsimple -- a robust XML parsing library that converts even complex XML to simple native data structures.
 * rspec -- spec testing support
 
-== Installing
+== RDoc Documentation
 
-TBD.
+See the auto-generated documentation[http://rubydoc.info/github/kenkeiter/spherical/]
