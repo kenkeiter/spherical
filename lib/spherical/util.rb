@@ -22,6 +22,8 @@
 
 module Spherical
   
+  # Require all files according to +matcher+ (a glob-matching pattern). See
+  # http://ruby-doc.org/core/classes/Dir.html#M000629 for more information.6
   def require_all(matcher)
     Dir.glob(matcher).each{|file| require file }
   end
@@ -52,15 +54,16 @@ class String
 end
 
 class OpenStruct
-
+  
+  # Hack to allow us to read the table directly.
   attr_reader :table
 
 end
 
 class Hash
-  # rmerge source: http://gist.github.com/gists/6391/
 
   # Recursively merge with other_hash in place.
+  # source:: http://gist.github.com/gists/6391/
   def rmerge!(other_hash)
     merge!(other_hash) do |key, oldval, newval| 
         oldval.class == self.class ? oldval.rmerge!(newval) : newval
@@ -68,6 +71,7 @@ class Hash
   end
 
   # Recursively merge with another hash, resulting in a new hash.
+  # source:: http://gist.github.com/gists/6391/
   def rmerge(other_hash)
     r = {}
     merge(other_hash) do |key, oldval, newval| 
@@ -75,7 +79,7 @@ class Hash
     end
   end
 
-  # Peform breadth-first recursive map of hash.
+  # Peform breadth-first recursive map of hash. 
   def rmap(&block)
     r = {}
     each do |k, v|
@@ -85,13 +89,17 @@ class Hash
     end
     return r
   end
-
+  
   def path_exists?(*path)
     path.inject(self) do |location, key|
       location.respond_to?(:keys) ? location[key] : nil
     end
   end
-
+  
+  # Perform a deep recursion through the hash, finding the first +key+.
+  # For example:
+  #
+  # <tt>{'fish' => {'halibut' => 1, 'trout' => 2}}.value_at_first('halibut') == 1</tt>
   def value_at_first(key)
     return fetch(key) if include? key
     each do |k, v|
@@ -101,6 +109,9 @@ class Hash
     end
   end
 
+  # Remove the key and value from the hash, and return the value. If the key 
+  # does not exist, optionally return +value+. Return nil if +value+ is 
+  # unspecified.
   def pull(key, value = nil)
     if include? key
       value = fetch(key)
@@ -108,7 +119,10 @@ class Hash
     end
     return value
   end
-
+  
+  # Convert the hash to an OpenStruct instance. Adds a method to the 
+  # resulting OpenStruct called +_hash+ that provides access to the original 
+  # hash that was converted.
   def to_ostruct(klass = OpenStruct, cch = {})
     cch[self] = (os = klass.new)
     os.__send__("_hash=", to_hash)

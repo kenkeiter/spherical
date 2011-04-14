@@ -70,8 +70,7 @@ module Spherical
       @service.root_folder.children_of_type(:Datacenter)
     end
     
-    # :nodoc:
-    def to_s
+    def to_s # :nodoc:
       "<Host:#{@options[:api]}>"
     end
     
