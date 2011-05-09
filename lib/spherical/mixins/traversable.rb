@@ -35,7 +35,7 @@ module Spherical
     
     module InstanceMethods
       
-      def each(type)
+      def each(type, &block)
         @host.service.property_collector.children_for_object(self, type)
       end
       

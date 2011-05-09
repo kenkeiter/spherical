@@ -30,7 +30,7 @@ module Spherical
     
     include Searchable # allow Datacenters to be searched
     
-    def instances
+    def inventory
       vm_folder.children_of_type(:VirtualMachine)
     end
     
